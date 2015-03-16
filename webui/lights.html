@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+	<title>Light Switch</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script src="./lights.js"></script>
+  
+	<script>		
+		window.onload = function() {
+			initialiseSwitch();			
+		};
+		
+	</script>
+	<body>
+		<br><br>
+		<input type="checkbox" id="lightswitch" disabled> <label for="lightswitch">Light Switch</label>		
+		
+		<br><br>
+		<button id="lightsonbutton"  onclick="lightSwitch(1,1)">Lights On</button>
+		<button id="lightsofffbutton"  onclick="lightSwitch(1,0)">Lights Off</button>
+		<br><br>
+		<p>
+			Light Status: 
+			<span id="statusfield">
+				0
+			</span>
+		</p>
+	</body>
+</html>
