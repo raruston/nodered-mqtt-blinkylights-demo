@@ -4,12 +4,12 @@ This repository contains the various components needed to set up a simple
 control mechanism for a UnicornHAT sitting on a Raspberry Pi. It uses Node-RED 
 to provide a direct control mechanism via Inject nodes, an API, and a simple web
 UI. MQTT is used as an interface between Node-RED and the Python code which 
-actually controls the UnicornHAT via the provided Python API.
+controls the UnicornHAT via the Python API provided by Pimoroni.
 
 It would be possible to drive the UnicornHAT directly from Node-RED, and using 
 MQTT is more flexible and simplifies some of the control. For example, it would
 be trivial to have the Unicorn HAT mounted on a different Pi, or have several
-Pis all with their own UnicornHATs all bowing down to a single Node-RED 
+Pis, all with their own UnicornHATs, all bowing down to a single Node-RED 
 controller. 
 
 **Note:** This should run on any Raspberry Pi 2 B or Pi B+, but it has only been
@@ -26,28 +26,25 @@ installing the following:
 
 ### Installing
 
-Simply copy the files provided to an appropriate location on your Pi
-For access to the Web UI, the user used to start Node-RED must have permission
+Simply copy the files provided to an appropriate location on your Pi.
+For the Web UI to work, the user used to start Node-RED must have permission
 to read the files in the webui folder.
 
 The flows folder contains Node-RED flows exported to JSON which need to be 
 imported to Node-RED. Once imported, the webui flows need to be modified so the 
-file node points to the correct location based on where you put the files.
+file nodes point to the correct locations based on where you put the files.
 
 ### Running
 
 1. Ensure Node-RED and MQTT are running
-2. Start the Python control 
-```bash
-sudo python uhcontrol.py
-```
+2. Start the UnicornHAT control process with "sudo python uhcontrol.py"
 3. Use the inject nodes from the directcontrol flows to test everything works.
 4. The webui can be accessed at http://hostname:noderedpport/lights
 
 
 ### How it works
 
-**uhcontrol**
+#####uhcontrol
 Starting at the lowest level, the uhcontrol.py script is a long running script
 which subscribes to the "pi/uhcontrol" topic, and waits for messages. The only
 way to terminate the script is to break out using CTRL-C (or kill if running in
@@ -78,11 +75,11 @@ The solution was to offload the pulse code to a new thread, and to provide
 protection against running multiple, conflicting, actions at once. If you inject
 multiple actions while pulse is running, the behaviour is 'undefined'.
 
-**MQTT*
+#####MQTT
 Not a lot to say here - I just used the default install of Mosquitto and it just
 worked
 
-**Node-RED**
+#####Node-RED
 The flows here are quite simple and should be pretty self explanatory. 
 
 The directcontrol flows just send a pre-defined JSON string to the MQTT node 
@@ -96,12 +93,14 @@ API and lets you turn the UH on and off.
 
 Simples.
 
+
 # Thanks and Acknowledgements
 
-The code for generating the pulse effect comes from **@sandyjmacdonald** and is based
-on his post here: http://sandyjmacdonald.github.io/2014/12/29/controlling-the-pimoroni-unicorn-hat-with-the-skywriter/
+Thanks to **@sandyjmacdonald** for the code used to create the 'pulse' effect, which
+is a modification of his code from a blog post here:
+http://sandyjmacdonald.github.io/2014/12/29/controlling-the-pimoroni-unicorn-hat-with-the-skywriter/
 
-Thanks to:
+#####Thanks to
 * The team at @pimoroni (for a cool piece of kit, and the useful example
 code which served as the basis for the controller).
 
