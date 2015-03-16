@@ -23,6 +23,8 @@ installing the following:
 * Node.js and Node-RED - http://nodered.org/docs/hardware/raspberrypi.html
 * Mosquitto MQTT Broker - http://mosquitto.org/download/
 * Python Client for MQTT (paho-mqtt 1.1) https://pypi.python.org/pypi/paho-mqtt
+* simplejson for Python (sudo pip install simplejson)
+* numpy for Python (sudo pip install numpy)
 
 ### Installing
 
