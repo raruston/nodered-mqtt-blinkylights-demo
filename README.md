@@ -1,4 +1,4 @@
-# Node-RED, MQTT and Pimoroni UnicornHAT Demo
+# Controlling Pimoroni UnicornHAT and/or Mote using Node-RED via MQTT
 
 This repository contains the various components needed to set up a simple 
 control mechanism for a UnicornHAT sitting on a Raspberry Pi. It uses Node-RED 
